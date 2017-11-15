@@ -6,14 +6,15 @@ import Prelude
     , reverse
     , take
     , unwords
-    , words )
+    , words
+    , Word)
 import qualified Data.List as List
   ( foldl'
   , length
   , map
   , reverse )
 import qualified Data.List.Split as List
-  ( chunk )
+  ( chunksOf )
 
 import Text.PrettyPrint.MPPPC.Printable
 import Text.PrettyPrint.MPPPC.TwoDim.Combinators.Align
@@ -45,7 +46,7 @@ para :: Printable s t => Alignment -> Int -> s -> Pretty s t
 para a n t = (\ ss -> mkParaBox a (List.length ss) ss) $ flow n t
 
 columns :: Printable s t => Alignment -> Int -> Int -> s -> [Pretty s t]
-columns a w h t = map (mkParaBox a h) . List.chunk h $ flow w t
+columns a w h t = map (mkParaBox a h) . List.chunksOf h $ flow w t
 
 mkParaBox :: Printable s t => Alignment -> Int -> [s] -> Pretty s t
 mkParaBox a n = alignVert top n . vcat a . map text

@@ -2,7 +2,7 @@ module Text.PrettyPrint.MPPPC.OneDim.Combinators.Layout where
 
 import Prelude
   hiding
-    ( length )
+    ( length,  (<$>))
 
 import Text.PrettyPrint.MPPPC.OneDim.Combinators.Prim
 import Text.PrettyPrint.MPPPC.OneDim.Combinators.Tok

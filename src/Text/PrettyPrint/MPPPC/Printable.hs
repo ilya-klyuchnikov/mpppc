@@ -71,7 +71,7 @@ instance IsString (Seq String Char) where
 
 instance Printable (Seq String Char) (Tok String Char) where
   append s        =     Seq . (++) (unSeq s)                 . unSeq
-  chunk     n     = map Seq . List.chunk n                   . unSeq
+  chunk     n     = map Seq . List.chunksOf n                . unSeq
   cons   t        =     Seq . (unTok t :)                    . unSeq
   head            =     Tok . List.head                      . unSeq
   hPutTok h       = hPutChar h                               . unTok
